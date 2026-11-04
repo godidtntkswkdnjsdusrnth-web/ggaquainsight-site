@@ -1,0 +1,9 @@
+# 정적 호스팅(Cloudflare Pages · Netlify)이 읽는 보안 헤더 파일.
+# GitHub Pages는 이 파일을 지원하지 않으므로, 그 경우 Cloudflare를 앞단에 두거나 호스팅 서비스 설정에서 같은 값을 지정하세요.
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Cross-Origin-Opener-Policy: same-origin
