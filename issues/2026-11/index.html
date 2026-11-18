@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-SiuWvUB3lzrMKifBlQWbAK/zqMlr1/Z533Ij0lE/NYU=' https://cdnjs.cloudflare.com; style-src 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src https://upload.wikimedia.org https://thumb.wikimedia.org data:; connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-N4+wYgXqEUI1zo8blDk/Y/w4RcXinhcwewCmySu6H2w=' https://cdnjs.cloudflare.com; style-src 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src https://upload.wikimedia.org https://thumb.wikimedia.org data:; connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>AquaInsight Gyeonggi</title>
   <meta name="description" content="경기도 해양수산자원연구소 월간 수산양식 인텔리전스 매거진">
@@ -13,10 +13,12 @@
   <style>
     /* ───────────── 경기도 브랜드 팔레트(프레젠테이션 템플릿에서 추출) ───────────── */
     :root{
-      --navy:#043E80; --deep:#06214A; --abyss:#020B1C;
-      --teal:#0AA4B4; --green:#75BD51; --vivid:#0328DD; --lav:#8494F0; --mid:#2378C6; --sea:#3A9389;
-      --paper:#F2F4F1; --paper-2:#E7EBE6; --ink:#0B1A2E; --ink-2:#44546A; --line:#D5DBD4;
-      --on-dark:#EEF3F8; --on-dark-2:#A9B8CB; --on-dark-3:#7387A1;
+      /* 민선9기 경기도 색상 규정: 공정 파랑 #1d2088 · 혁신 하늘 #0084bb · 연한 혁신 하늘 #3da1cd · 포용 초록 #6bb92d */
+      --navy:#1d2088; --deep:#11135a; --abyss:#080a2e;
+      --teal:#3da1cd; --sky:#0084bb; --green:#6bb92d; --lav:#6f7be0; --mid:#0084bb; --sea:#0084bb;
+      --grad:linear-gradient(90deg,#6bb92d 0%,#00a19a 28%,#0084bb 55%,#004a9a 80%,#1d2088 100%);
+      --paper:#F4F6FA; --paper-2:#E6EAF2; --ink:#14163f; --ink-2:#4a4f72; --line:#D8DCE8;
+      --on-dark:#EEF1FB; --on-dark-2:#AEB4D6; --on-dark-3:#7C83B0;
       --f-sans:"Pretendard","Malgun Gothic","Apple SD Gothic Neo",sans-serif;
       --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
       --ease:cubic-bezier(.2,.7,.1,1);
@@ -30,7 +32,7 @@
     img{max-width:100%;display:block}
     .mono{font-family:var(--f-mono)}
     em{font-style:italic}
-    .dark em{color:#E6C98A}
+    .dark em{color:#9ed36a}
     .paper em{color:var(--navy);font-weight:600}
 
     /* ───────────── 3D 배경 + 질감(덱의 grain/vignette) ───────────── */
@@ -52,8 +54,8 @@
 
     /* ───────────── 상단 크롬: 챕터 트랙 + 진행바(덱 스타일) ───────────── */
     .chrome{position:fixed;top:0;left:0;right:0;z-index:50;height:var(--nav-h);display:flex;align-items:center;
-      background:linear-gradient(180deg,rgba(2,11,28,.85),rgba(2,11,28,.55));backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-      border-bottom:1px solid rgba(132,148,240,.14);transition:background .5s}
+      background:linear-gradient(180deg,rgba(8,10,46,.85),rgba(8,10,46,.55));backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(61,161,205,.14);transition:background .5s}
     .chrome .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
     .brand{display:flex;align-items:baseline;gap:8px;text-decoration:none;font-weight:900;letter-spacing:-.02em;font-size:18px;white-space:nowrap}
     .brand b{color:var(--on-dark)} .brand span{font-family:var(--f-mono);font-weight:500;font-size:11px;letter-spacing:.2em;color:var(--teal)}
@@ -62,33 +64,33 @@
     .track a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:currentColor;opacity:.3;transition:opacity .4s}
     .track a.done{color:var(--on-dark-2)} .track a.on{color:var(--teal)} .track a.on::after{opacity:1}
     @media(min-width:1024px){.track{display:flex}}
-    .issue-chip{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;color:var(--on-dark-2);border:1px solid rgba(132,148,240,.35);
+    .issue-chip{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;color:var(--on-dark-2);border:1px solid rgba(61,161,205,.35);
       padding:6px 12px;border-radius:999px;white-space:nowrap}
-    #prog{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:linear-gradient(90deg,var(--teal),var(--green));transition:width .2s linear}
+    #prog{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--grad);transition:width .2s linear}
 
     /* ───────────── 내비: 데스크톱 아이콘 레일 / 모바일 하단 탭 ───────────── */
     .rail{position:fixed;left:22px;top:50%;transform:translateY(-50%);z-index:45;display:none;flex-direction:column;gap:10px}
     @media(min-width:1024px){.rail{display:flex}}
     .rail a{position:relative;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;text-decoration:none;
-      color:var(--on-dark-2);background:rgba(4,62,128,.35);border:1px solid rgba(132,148,240,.18);backdrop-filter:blur(8px);
+      color:var(--on-dark-2);background:rgba(29,32,136,.35);border:1px solid rgba(61,161,205,.18);backdrop-filter:blur(8px);
       transition:all .35s var(--ease)}
     .rail a svg{width:20px;height:20px}
-    .rail a:hover{color:#fff;background:rgba(10,164,180,.35);transform:translateX(2px)}
-    .rail a.on{color:#fff;background:var(--teal);border-color:var(--teal);box-shadow:0 6px 22px rgba(10,164,180,.45)}
+    .rail a:hover{color:#fff;background:rgba(0,132,187,.35);transform:translateX(2px)}
+    .rail a.on{color:#fff;background:var(--teal);border-color:var(--teal);box-shadow:0 6px 22px rgba(0,132,187,.45)}
     .rail a span{position:absolute;left:54px;top:50%;transform:translate(-6px,-50%);opacity:0;pointer-events:none;white-space:nowrap;
       background:var(--deep);color:#fff;font-size:12px;font-weight:700;padding:6px 12px;border-radius:10px;transition:all .3s var(--ease);
-      border:1px solid rgba(132,148,240,.25)}
+      border:1px solid rgba(61,161,205,.25)}
     .rail a:hover span{opacity:1;transform:translate(0,-50%)}
     body.on-paper .rail a{background:rgba(255,255,255,.75);color:var(--ink-2);border-color:var(--line)}
     body.on-paper .rail a.on{background:var(--navy);color:#fff;border-color:var(--navy)}
 
     .tabbar{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:55;display:flex;justify-content:space-around;
-      background:rgba(6,33,74,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(132,148,240,.25);
+      background:rgba(17,19,90,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(61,161,205,.25);
       border-radius:20px;padding:6px 4px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
     .tabbar a{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;text-decoration:none;color:var(--on-dark-3);
       font-size:10px;font-weight:700;border-radius:14px;transition:color .3s,background .3s}
     .tabbar a svg{width:20px;height:20px}
-    .tabbar a.on{color:#fff;background:rgba(10,164,180,.28)}
+    .tabbar a.on{color:#fff;background:rgba(0,132,187,.28)}
     @media(min-width:1024px){.tabbar{display:none}}
     @media(max-width:1023px){footer{padding-bottom:96px!important}}
 
@@ -105,10 +107,16 @@
     html.still .rv,html.still .ml>span{transition:none!important;opacity:1!important;transform:none!important}
     html.still #grain,html.still .photo *,html.still .waves animate{animation:none!important}
     .motion-btn{font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;color:var(--on-dark-2);background:transparent;cursor:pointer;
-      border:1px solid rgba(132,148,240,.35);padding:6px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:6px}
+      border:1px solid rgba(61,161,205,.35);padding:6px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:6px}
     .motion-btn i{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)}
     html.still .motion-btn i{background:#7387A1;box-shadow:none}
     .chrome-right{display:flex;align-items:center;gap:8px}
+    /* 민선9기 시그니처 — 어두운 배경엔 네거티브형(미래=초록, 경기=연한 혁신 하늘, 나머지 흰색) */
+    .sig{display:inline-flex;align-items:center;margin-right:4px}
+    .sig svg{height:34px;width:auto;display:block;--sig-ink:#fff;--sig-sky:#3da1cd;--sig-shape:#fff;--sig-shape2:#fff}
+    @media(max-width:640px){.sig svg{height:28px}.motion-btn span{display:none}}
+    .sig-foot svg{height:72px;width:auto;display:block;margin-left:auto;--sig-ink:#fff;--sig-sky:#3da1cd;--sig-shape:#fff;--sig-shape2:#fff}
+    .gbar{height:4px;background:var(--grad)}
     @media(max-width:420px){.issue-chip{display:none}}
 
     .eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin:0 0 14px}
@@ -118,13 +126,13 @@
     .cover{min-height:100svh;padding:calc(var(--nav-h) + 28px) 0 40px;display:flex;align-items:center;position:relative;overflow:hidden}
     .cover-grid{display:grid;gap:28px;align-items:center}
     @media(min-width:1024px){.cover-grid{grid-template-columns:1.05fr .95fr;gap:56px}}
-    .masthead{display:flex;align-items:flex-end;justify-content:space-between;border-bottom:1px solid rgba(132,148,240,.3);padding-bottom:14px;margin-bottom:22px}
+    .masthead{display:flex;align-items:flex-end;justify-content:space-between;border-bottom:1px solid rgba(61,161,205,.3);padding-bottom:14px;margin-bottom:22px}
     .masthead h1{margin:0;font-size:clamp(40px,7.5vw,92px);line-height:.9;font-weight:900;letter-spacing:-.045em}
     .masthead h1 i{font-style:normal;color:var(--teal)}
     .masthead .vol{font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;color:var(--on-dark-2);text-align:right;line-height:1.7}
     .issue-row{display:flex;align-items:center;gap:18px;margin-bottom:22px}
     .issue-num{font-size:clamp(72px,13vw,164px);line-height:.8;font-weight:900;letter-spacing:-.06em;
-      background:linear-gradient(160deg,#fff 0%,var(--lav) 55%,var(--teal) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+      background:linear-gradient(160deg,#fff 0%,#3da1cd 50%,#6bb92d 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
     .issue-meta .mono{font-size:13px;letter-spacing:.2em;color:var(--green)}
     .issue-meta .theme{font-size:clamp(17px,2.2vw,24px);font-weight:800;margin-top:6px}
     .cover-story .label{display:inline-block;font-family:var(--f-mono);font-size:11px;letter-spacing:.2em;color:var(--abyss);background:var(--green);
@@ -132,34 +140,36 @@
     .cover-story h2{margin:0 0 22px;font-size:clamp(26px,3.6vw,46px);line-height:1.15;font-weight:800;letter-spacing:-.035em}
     .coverlines{list-style:none;margin:0;padding:0;display:grid;gap:10px}
     .coverlines a{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:baseline;text-decoration:none;padding:12px 0;
-      border-top:1px solid rgba(132,148,240,.18);transition:padding-left .35s var(--ease)}
+      border-top:1px solid rgba(61,161,205,.18);transition:padding-left .35s var(--ease)}
     .coverlines a:hover{padding-left:6px}
     .coverlines .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;color:var(--teal);white-space:nowrap}
     .coverlines .t{font-size:15px;line-height:1.45;color:var(--on-dark);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
     .photo{position:relative;aspect-ratio:1/1;max-width:600px;width:100%;margin:0 auto}
-    .photo .blob{position:absolute;border-radius:50%;filter:saturate(1.1)}
-    .photo .b1{inset:2% 14% 30% 0;background:var(--green);border-radius:46% 54% 50% 50%/55% 48% 52% 45%;animation:float 14s ease-in-out infinite}
-    .photo .b2{inset:30% 0 0 22%;background:var(--navy);border-radius:52% 48% 40% 60%/50% 55% 45% 50%;animation:float 17s ease-in-out infinite reverse}
-    .photo .frame{position:absolute;inset:8% 6% 6% 8%;overflow:hidden;border-radius:44% 56% 50% 50%/48% 46% 54% 52%;
-      box-shadow:0 30px 80px rgba(0,0,0,.5);animation:morph 18s ease-in-out infinite}
+    /* 시그니처 모티프: 오른쪽 위 화살표(종이비행기) + 왼쪽 아래 사분원, 초록→하늘→파랑 그라데이션 */
+    .photo .arrow{position:absolute;inset:0 0 18% 30%;background:linear-gradient(225deg,#1d2088 0%,#004a9a 22%,#0084bb 48%,#00a19a 72%,#6bb92d 100%);
+      clip-path:polygon(0 22%,100% 0,86% 100%,86% 22%);animation:glide 9s ease-in-out infinite}
+    .photo .quarter{position:absolute;left:0;bottom:0;width:30%;aspect-ratio:1;border-radius:50%;
+      background:linear-gradient(45deg,#1d2088 0%,#004a9a 30%,#0084bb 62%,#6bb92d 100%);
+      clip-path:polygon(0 0,50% 0,50% 50%,100% 50%,100% 100%,0 100%);animation:glide 11s ease-in-out infinite reverse}
+    /* 사진은 반듯한 직사각형으로, 시그니처의 글자 자리처럼 화살표 안쪽 모서리와 사분원의 빈 사분면 사이에 놓는다 */
+    .photo .frame{position:absolute;top:24%;right:13%;bottom:15%;left:15%;overflow:hidden;border-radius:4px;
+      box-shadow:0 24px 60px rgba(0,0,0,.45)}
     .photo .frame img{width:100%;height:100%;object-fit:cover;transform:scale(1.15);animation:kb 22s ease-in-out infinite alternate}
-    .photo .frame::after{content:"";position:absolute;inset:0;background:linear-gradient(200deg,rgba(10,164,180,.0) 30%,rgba(4,62,128,.55) 100%);mix-blend-mode:multiply}
-    .photo .ring{position:absolute;inset:4% 2% 2% 4%;border:1.5px solid rgba(255,255,255,.55);border-radius:50% 50% 46% 54%/52% 48% 52% 48%;animation:morph 22s ease-in-out infinite reverse}
+    .photo .frame::after{content:"";position:absolute;inset:0;background:linear-gradient(200deg,rgba(0,132,187,0) 35%,rgba(29,32,136,.55) 100%);mix-blend-mode:multiply}
     .photo .credit{position:absolute;right:6%;bottom:2%;font-size:10px;color:var(--on-dark-3);text-decoration:none;max-width:70%;text-align:right}
     @media(max-width:640px){
       .masthead .vol{display:none}
       #season-chip{display:block;margin:6px 0 0!important}
-      .chapter .lede{text-shadow:0 1px 12px rgba(2,11,28,.95),0 0 2px rgba(2,11,28,.9)}
-      .chapter h2{text-shadow:0 2px 18px rgba(2,11,28,.8)}
+      .chapter .lede{text-shadow:0 1px 12px rgba(8,10,46,.95),0 0 2px rgba(8,10,46,.9)}
+      .chapter h2{text-shadow:0 2px 18px rgba(8,10,46,.8)}
     }
     @keyframes kb{from{transform:scale(1.12) translate(0,0)}to{transform:scale(1.25) translate(-3%,-2%)}}
-    @keyframes float{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(2%,-2%) rotate(4deg)}}
-    @keyframes morph{0%,100%{border-radius:44% 56% 50% 50%/48% 46% 54% 52%}50%{border-radius:56% 44% 42% 58%/55% 52% 48% 45%}}
+    @keyframes glide{0%,100%{transform:translate(0,0)}50%{transform:translate(1.5%,-1.5%)}}
 
-    .pass{margin-top:26px;display:grid;grid-template-columns:repeat(4,1fr);border:1px solid rgba(132,148,240,.28);border-radius:14px;overflow:hidden;
-      background:rgba(4,62,128,.22);backdrop-filter:blur(6px)}
-    .pass div{padding:12px 14px;border-right:1px dashed rgba(132,148,240,.25)}
+    .pass{margin-top:26px;display:grid;grid-template-columns:repeat(4,1fr);border:1px solid rgba(61,161,205,.28);border-radius:14px;overflow:hidden;
+      background:rgba(29,32,136,.22);backdrop-filter:blur(6px)}
+    .pass div{padding:12px 14px;border-right:1px dashed rgba(61,161,205,.25)}
     .pass div:last-child{border-right:0}
     .pass .k{display:block;font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;color:var(--on-dark-3)}
     .pass .v{display:block;font-size:22px;font-weight:800;margin-top:2px}
@@ -179,37 +189,37 @@
     .stats{display:flex;flex-wrap:wrap;gap:12px}
     @media(max-width:767px){
       .chapter{min-height:100svh;align-items:flex-start;padding:92px 0 44svh}
-      .chapter .wrap{background:linear-gradient(180deg,rgba(2,11,28,.78),rgba(2,11,28,.5));backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
-        border:1px solid rgba(132,148,240,.16);border-radius:22px;padding:22px 18px;width:calc(100% - 24px)}
+      .chapter .wrap{background:linear-gradient(180deg,rgba(8,10,46,.78),rgba(8,10,46,.5));backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+        border:1px solid rgba(61,161,205,.16);border-radius:22px;padding:22px 18px;width:calc(100% - 24px)}
       .chapter h2{font-size:40px}
       .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
       .stats .stat{min-width:0;padding:12px 10px;border-radius:12px}
       .stats .stat .n{font-size:26px}
       .stats .stat .k{font-size:9px;letter-spacing:.1em}
     }
-    .stat{min-width:120px;padding:16px 18px;border-radius:16px;background:rgba(4,62,128,.32);border:1px solid rgba(132,148,240,.2);backdrop-filter:blur(6px)}
+    .stat{min-width:120px;padding:16px 18px;border-radius:16px;background:rgba(29,32,136,.32);border:1px solid rgba(61,161,205,.2);backdrop-filter:blur(6px)}
     .stat .n{font-size:clamp(30px,4vw,44px);font-weight:900;letter-spacing:-.04em;line-height:1}
     .stat .n small{font-size:.45em;font-weight:700;margin-left:2px;color:var(--on-dark-2)}
     .stat .k{font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;color:var(--on-dark-3);margin-top:8px;display:block}
     .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-    .chips span{font-size:12px;color:var(--on-dark-2);border:1px solid rgba(132,148,240,.28);padding:5px 11px;border-radius:999px}
+    .chips span{font-size:12px;color:var(--on-dark-2);border:1px solid rgba(61,161,205,.28);padding:5px 11px;border-radius:999px}
 
     /* 인사이트 */
     .insight h2.title{margin:0 0 30px;font-size:clamp(28px,4.2vw,56px);line-height:1.12;font-weight:900;letter-spacing:-.04em;max-width:15em}
     .hl-grid{display:grid;gap:14px;grid-template-columns:1fr}
     @media(min-width:768px){.hl-grid{grid-template-columns:repeat(2,1fr)}}
     @media(min-width:1200px){.hl-grid.n3{grid-template-columns:repeat(3,1fr)}.hl-grid.n4{grid-template-columns:repeat(4,1fr)}}
-    .hl{padding:22px;border-radius:20px;background:linear-gradient(160deg,rgba(4,62,128,.55),rgba(6,33,74,.4));border:1px solid rgba(132,148,240,.2);
+    .hl{padding:22px;border-radius:20px;background:linear-gradient(160deg,rgba(29,32,136,.55),rgba(17,19,90,.4));border:1px solid rgba(61,161,205,.2);
       backdrop-filter:blur(8px);transition:transform .45s var(--ease),border-color .45s}
-    .hl:hover{transform:translateY(-4px);border-color:rgba(10,164,180,.6)}
+    .hl:hover{transform:translateY(-4px);border-color:rgba(0,132,187,.6)}
     .hl .tag{display:inline-block;font-size:11px;font-weight:800;color:var(--abyss);background:var(--teal);padding:3px 9px;border-radius:6px;margin-bottom:12px}
-    .hl:nth-child(2) .tag{background:var(--green)} .hl:nth-child(3) .tag{background:var(--lav)} .hl:nth-child(4) .tag{background:#E6C98A}
+    .hl:nth-child(2) .tag{background:var(--green)} .hl:nth-child(3) .tag{background:var(--lav)} .hl:nth-child(4) .tag{background:#9ed36a}
     .hl h4{margin:0 0 8px;font-size:17px;line-height:1.35;font-weight:800}
     .hl p{margin:0;font-size:13.5px;line-height:1.65;color:var(--on-dark-2)}
-    .commentary{margin-top:22px;padding:26px;border-radius:22px;background:rgba(2,11,28,.55);border:1px solid rgba(132,148,240,.16);backdrop-filter:blur(8px)}
-    .commentary .h{display:flex;align-items:center;gap:8px;font-weight:800;color:#E6C98A;font-size:14px;margin-bottom:12px}
+    .commentary{margin-top:22px;padding:26px;border-radius:22px;background:rgba(8,10,46,.55);border:1px solid rgba(61,161,205,.16);backdrop-filter:blur(8px)}
+    .commentary .h{display:flex;align-items:center;gap:8px;font-weight:800;color:#9ed36a;font-size:14px;margin-bottom:12px}
     .commentary .body{font-size:clamp(15px,1.5vw,17.5px);line-height:1.85;color:var(--on-dark);white-space:pre-line}
-    details.src{margin-top:16px;padding-top:14px;border-top:1px solid rgba(132,148,240,.16);font-size:12px;color:var(--on-dark-3)}
+    details.src{margin-top:16px;padding-top:14px;border-top:1px solid rgba(61,161,205,.16);font-size:12px;color:var(--on-dark-3)}
     details.src summary{cursor:pointer} details.src li{margin:4px 0;list-style:none} details.src ul{padding:0;margin:10px 0 0}
     details.src .id{font-family:var(--f-mono);color:var(--teal);margin-right:6px}
 
@@ -228,12 +238,12 @@
 
     .card{background:#fff;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;border:1px solid var(--line);
       box-shadow:0 2px 0 rgba(11,26,46,.04);transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
-    .card:hover{transform:translateY(-6px);box-shadow:0 22px 44px rgba(4,62,128,.14)}
+    .card:hover{transform:translateY(-6px);box-shadow:0 22px 44px rgba(29,32,136,.14)}
     .thumb{position:relative;aspect-ratio:16/10;overflow:hidden;background:linear-gradient(135deg,var(--navy),var(--teal))}
     .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
     .card:hover .thumb img{transform:scale(1.06)}
     .thumb .cat{position:absolute;top:12px;left:12px;font-size:11px;font-weight:800;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.92);color:var(--navy)}
-    .thumb .credit{position:absolute;right:8px;bottom:8px;max-width:80%;font-size:10px;color:rgba(255,255,255,.88);background:rgba(2,11,28,.5);
+    .thumb .credit{position:absolute;right:8px;bottom:8px;max-width:80%;font-size:10px;color:rgba(255,255,255,.88);background:rgba(8,10,46,.5);
       padding:3px 8px;border-radius:999px;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .card .body{padding:20px;display:flex;flex-direction:column;gap:14px;flex:1}
     .card h4{margin:0;font-size:17px;line-height:1.42;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
@@ -254,7 +264,7 @@
 
     .report{background:#fff;border-radius:18px;border:1px solid var(--line);border-top:4px solid var(--teal);padding:20px;display:flex;flex-direction:column;gap:12px;
       transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
-    .report:hover{transform:translateY(-5px);box-shadow:0 18px 38px rgba(4,62,128,.12)}
+    .report:hover{transform:translateY(-5px);box-shadow:0 18px 38px rgba(29,32,136,.12)}
     .report.news{border-top-color:var(--green)}
     .report .top{display:flex;justify-content:space-between;gap:8px;font-size:12px}
     .report .src{font-weight:800;color:var(--navy);background:var(--paper);padding:3px 9px;border-radius:6px}
@@ -278,13 +288,13 @@
     .bi-grid{display:grid;gap:18px;grid-template-columns:repeat(2,minmax(0,1fr))}
     @media(min-width:768px){.bi-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
     @media(min-width:1100px){.bi-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
-    .bi{display:flex;flex-direction:column;text-decoration:none;border-radius:18px;overflow:hidden;background:rgba(4,62,128,.3);
-      border:1px solid rgba(132,148,240,.2);transition:transform .45s var(--ease),border-color .45s}
+    .bi{display:flex;flex-direction:column;text-decoration:none;border-radius:18px;overflow:hidden;background:rgba(29,32,136,.3);
+      border:1px solid rgba(61,161,205,.2);transition:transform .45s var(--ease),border-color .45s}
     .bi:hover{transform:translateY(-5px);border-color:var(--teal)}
     .bi.here{border-color:var(--green)}
     .bi-cover{position:relative;aspect-ratio:3/4;background:linear-gradient(160deg,var(--navy),var(--teal));overflow:hidden}
     .bi-cover img{width:100%;height:100%;object-fit:cover;opacity:.85}
-    .bi-cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(2,11,28,.85))}
+    .bi-cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(8,10,46,.85))}
     .bi-no{position:absolute;left:14px;bottom:6px;z-index:1;font-size:64px;font-weight:900;letter-spacing:-.06em;color:#fff;line-height:1}
     .bi-badge{position:absolute;top:10px;left:10px;z-index:1;font-size:11px;font-weight:800;background:var(--teal);color:var(--abyss);padding:3px 9px;border-radius:999px}
     .bi-badge.here{left:auto;right:10px;background:var(--green)}
@@ -296,10 +306,11 @@
       padding:8px 16px;background:var(--green);color:var(--abyss);font-size:13px;font-weight:700}
     .oldbar a{color:var(--abyss);text-decoration:underline}
     .oldbar[hidden]{display:none}
-    footer{background:var(--abyss);padding:70px 0 50px;border-top:1px solid rgba(132,148,240,.15);overflow:hidden}
+    footer{background:var(--abyss);padding:70px 0 50px;overflow:hidden;border-top:4px solid transparent;border-image:var(--grad) 1}
     footer .f{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;font-size:13px;color:var(--on-dark-2)}
     footer .f b{color:#fff;font-size:20px;letter-spacing:-.02em}
-    footer .pub{color:#E6C98A;font-weight:700}
+    footer .pub{color:#9ed36a;font-weight:700}
+    footer .f{align-items:flex-end}
   </style>
 </head>
 <body data-base="../../" data-latest="1">
@@ -317,6 +328,12 @@
       <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3z"/></symbol>
       <symbol id="i-policy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h11a3 3 0 0 1 3 3v11H7a3 3 0 0 1-3-3V5z"/><path d="M18 9h2v8a2 2 0 0 1-2 2"/><path d="M8 9h6M8 13h6"/></symbol>
       <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5z"/><path d="M4 19a2 2 0 0 1 2-2h13"/></symbol>
+      <defs><linearGradient id="sigArrow" gradientUnits="userSpaceOnUse" x1="182" y1="140" x2="364" y2="0">
+<stop offset="0" stop-color="#6bb92d"/><stop offset=".3" stop-color="#00a19a"/><stop offset=".55" stop-color="#0084bb"/><stop offset=".8" stop-color="#004a9a"/><stop offset="1" stop-color="#1d2088"/></linearGradient>
+<linearGradient id="sigQuarter" gradientUnits="userSpaceOnUse" x1="0" y1="241" x2="82" y2="159">
+<stop offset="0" stop-color="#1d2088"/><stop offset=".35" stop-color="#004a9a"/><stop offset=".65" stop-color="#0084bb"/><stop offset="1" stop-color="#6bb92d"/></linearGradient></defs>
+<symbol id="sig" viewBox="0 0 364.694 241.099"><path fill="var(--sig-shape,url(#sigArrow))" d="M182.34,44.86 L364.32,0.00 L319.28,181.79 L319.28,44.86 Z"/><path fill="var(--sig-shape2,url(#sigQuarter))" d="M40.84,200.03 L40.84,159.18 A40.84,40.84 0 1,0 81.69,200.03 Z"/><path fill="var(--sig-green,#6bb92d)" transform="matrix(1,0,0,-1,0,241.099)" d="M98.043 167.396H106.486V123.979999H98.043ZM84.011 158.351H75.626V134.043H84.011ZM67.241 166.379H92.452999V126.016H67.241Z"/><path fill="var(--sig-green,#6bb92d)" transform="matrix(1,0,0,-1,151.6704,117.1185)" d="M0 0H-7.861V19.333H-11.413V.735H-19.157V43.246H-11.413V27.474H-7.861V43.416H0ZM-25.707 9.723C-23.903 9.986-22.379 10.364-21.137 10.854V3.561C-22.34 3.071-23.883 2.694-25.766 2.431-27.649 2.167-29.541 2.035-31.443 2.035H-41.516V25.948H-30.861V35.106H-41.516V42.398H-23.058V18.712H-33.714V9.328H-31.035C-29.288 9.328-27.513 9.459-25.707 9.723"/><path fill="var(--sig-ink,#1d2088)" transform="matrix(1,0,0,-1,193.3019,97.8983)" d="M0 0V-19.22H-8.385V24.195H0V8.31H5.008V0ZM-14.673 23.178V11.419C-14.673 5.577-15.654 .509-17.614-3.787-19.574-8.084-22.359-11.391-25.969-13.709-29.58-16.026-33.83-17.185-38.721-17.185V-9.045C-33.675-9.008-29.832-7.199-27.192-3.618-24.553-.038-23.233 4.975-23.233 11.419V15.377H-38.721V23.178Z"/><path fill="var(--sig-ink,#1d2088)" transform="matrix(1,0,0,-1,0,241.099)" d="M239.533 167.396H247.977V143.37H239.533ZM216.766 152.274C217.776 151.426 219.095 151.002 220.726 151.002 222.395 151.002 223.724 151.426 224.715 152.274 225.704 153.122 226.2 154.243 226.2 155.638 226.2 157.07 225.704 158.21 224.715 159.058 223.724 159.906 222.395 160.33 220.726 160.33 219.095 160.33 217.776 159.906 216.766 159.058 215.756 158.21 215.252 157.07 215.252 155.638 215.252 154.243 215.756 153.122 216.766 152.274M233.944 125.337C231.964 124.432 229.867 123.98 227.655 123.98L221.192 129.181C219.678 127.522 217.95 126.242 216.009 125.337 214.068 124.432 212.05 123.98 209.954 123.98V131.725C211.273 131.725 212.525 132.177 213.709 133.082 214.893 133.986 215.873 135.23 216.649 136.813 217.427 138.396 217.912 140.129 218.106 142.014L226.258 140.657C226.024 138.848 225.598 137.076 224.977 135.343L229.576 132.121C231.207 132.648 232.604 133.825 233.768 135.654 234.933 137.482 235.652 139.601 235.924 142.014L244.017 140.657C243.783 138.81 243.377 137.058 242.794 135.4L250.946 129.633 246.229 123.528 239.125 129.238C237.651 127.542 235.924 126.242 233.944 125.337M232.808 149.476C231.663 147.704 230.042 146.338 227.946 145.377 225.85 144.416 223.442 143.936 220.726 143.936 218.008 143.936 215.602 144.416 213.506 145.377 211.41 146.338 209.779 147.704 208.615 149.476 207.45 151.247 206.868 153.301 206.868 155.638 206.868 157.974 207.45 160.028 208.615 161.8 209.779 163.571 211.41 164.937 213.506 165.898 215.602 166.859 218.008 167.34 220.726 167.34 223.442 167.34 225.85 166.859 227.946 165.898 230.042 164.937 231.663 163.571 232.808 161.8 233.952 160.028 234.525 157.974 234.525 155.638 234.525 153.301 233.952 151.247 232.808 149.476"/><path fill="var(--sig-ink,#1d2088)" transform="matrix(1,0,0,-1,290.7728,97.8983)" d="M0 0V-19.22H-8.385V24.195H0V8.31H5.007V0ZM-15.285-8.904C-13.286-8.546-11.646-8.065-10.364-7.462V-15.15C-11.607-15.792-13.315-16.29-15.488-16.648-17.663-17.007-19.836-17.185-22.009-17.185H-38.488V23.178H-13.683V15.433H-29.928V-9.441H-21.37C-19.312-9.441-17.284-9.262-15.285-8.904"/><path fill="var(--sig-sky,#0084bb)" transform="matrix(1,0,0,-1,91.755,155.673)" d="M0 0V7.349H6.58V10.176H1.688V17.525H6.58V20.916H14.906V-2.996H6.58V0ZM3.406-15.461C5.328-14.99 6.288-14.265 6.288-13.285 6.288-12.305 5.328-11.589 3.406-11.137 1.485-10.684-1.029-10.458-4.134-10.458-7.201-10.458-9.686-10.684-11.587-11.137-13.49-11.589-14.44-12.305-14.44-13.285-14.44-14.265-13.49-14.99-11.587-15.461-9.686-15.933-7.201-16.168-4.134-16.168-1.029-16.168 1.485-15.933 3.406-15.461M10.015-5.907C13.547-7.434 15.314-9.893 15.314-13.285 15.314-16.677 13.557-19.145 10.044-20.691 6.531-22.235 1.805-23.008-4.134-23.008-10.035-23.008-14.742-22.235-18.254-20.691-21.768-19.145-23.524-16.677-23.524-13.285-23.524-9.893-21.768-7.434-18.254-5.907-14.742-4.381-10.035-3.618-4.134-3.618 1.766-3.618 6.482-4.381 10.015-5.907M-7.104 1.781C-11.646-.99-17.759-2.374-25.446-2.374V4.918C-22.147 4.955-19.244 5.294-16.741 5.936-14.237 6.576-12.306 7.471-10.947 8.621-9.589 9.77-8.909 11.117-8.909 12.663V13.285H-25.446V20.408H-.291V14.529C-.291 8.799-2.562 4.551-7.104 1.781"/><path fill="var(--sig-sky,#0084bb)" transform="matrix(1,0,0,-1,0,241.099)" d="M142.063 106.342H150.506V62.926004H142.063ZM132.513 78.388C130.495 74.072 127.641 70.756 123.954 68.438 120.266 66.121 115.957 64.962 111.028 64.962V73.102C116.112 73.139 120.024 74.968 122.76 78.586 125.497 82.204 126.866 87.197 126.866 93.566V97.523H111.028V105.325H135.541V93.566C135.541 87.762 134.532 82.703 132.513 78.388"/><path fill="var(--sig-ink,#1d2088)" transform="matrix(1,0,0,-1,193.3019,158.9521)" d="M0 0V-19.22H-8.385V24.195H0V8.31H5.008V0ZM-14.673 23.178V11.419C-14.673 5.577-15.654 .509-17.614-3.787-19.574-8.084-22.359-11.391-25.969-13.709-29.58-16.026-33.83-17.185-38.721-17.185V-9.045C-33.675-9.008-29.832-7.199-27.192-3.618-24.553-.038-23.233 4.975-23.233 11.419V15.377H-38.721V23.178Z"/><path fill="var(--sig-ink,#1d2088)" transform="matrix(1,0,0,-1,220.2891,176.5614)" d="M0 0C-3.28-1.074-6.706-1.611-10.277-1.611V6.416C-6.24 6.416-2.689 7.264 .378 8.96 3.445 10.656 5.367 12.992 6.143 15.97L14.529 14.444C14.14 13.011 13.713 11.805 13.247 10.826L29.551 5.455 26.638-2.176 8.472 4.721C6.103 2.647 3.28 1.074 0 0"/><path fill="var(--sig-ink,#1d2088)" transform="matrix(1,0,0,-1,224.6565,151.207)" d="M0 0C-1.029-.98-2.358-1.47-3.989-1.47-5.62-1.47-6.949-.98-7.978 0-9.007 .98-9.521 2.298-9.521 3.957-9.521 5.615-9.007 6.925-7.978 7.886-6.949 8.847-5.62 9.328-3.989 9.328-2.358 9.328-1.029 8.847 0 7.886 1.027 6.925 1.543 5.615 1.543 3.957 1.543 2.298 1.027 .98 0 0M8.123 10.402C6.958 12.286 5.327 13.756 3.23 14.811 1.135 15.866-1.273 16.394-3.989 16.394-6.707 16.394-9.123 15.866-11.238 14.811-13.355 13.756-14.994 12.286-16.158 10.402-17.323 8.517-17.905 6.368-17.905 3.957-17.905 1.545-17.323-.613-16.158-2.516-14.994-4.419-13.355-5.899-11.238-6.953-9.123-8.009-6.707-8.536-3.989-8.536-1.273-8.536 1.135-8.009 3.23-6.953 5.327-5.899 6.958-4.419 8.123-2.516 9.287-.613 9.869 1.545 9.869 3.957 9.869 6.368 9.287 8.517 8.123 10.402"/><path fill="var(--sig-ink,#1d2088)" transform="matrix(1,0,0,-1,0,241.099)" d="M239.533 106.342H247.977V76.72H239.533Z"/><path fill="var(--sig-ink,#1d2088)" transform="matrix(1,0,0,-1,290.7728,158.9521)" d="M0 0V-19.22H-8.385V24.195H0V8.31H5.007V0ZM-15.285-8.904C-13.286-8.546-11.646-8.065-10.364-7.462V-15.15C-11.607-15.792-13.315-16.29-15.488-16.648-17.663-17.007-19.836-17.185-22.009-17.185H-38.488V23.178H-13.683V15.433H-29.928V-9.441H-21.37C-19.312-9.441-17.284-9.262-15.285-8.904"/></symbol>
+
       <symbol id="i-archive" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="5" rx="1"/><path d="M5 9v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9"/><path d="M10 13h4"/></symbol>
       <symbol id="i-feather" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4c-6 0-11 4-12 11l-3 5"/><path d="M8 15h6"/></symbol>
     </defs>
@@ -330,6 +347,7 @@
         <a href="#ch-korea" data-sec="korea">KOREA</a><a href="#ch-global" data-sec="global">GLOBAL</a><a href="#ch-policy" data-sec="policy">POLICY</a><a href="#archive" data-sec="archive">ARCHIVE</a>
       </nav>
       <div class="chrome-right">
+        <a class="sig" href="https://www.gg.go.kr" target="_blank" rel="noopener" aria-label="경기도 — 미래가 있다 경기가 있다"><svg viewBox="0 0 364.694 241.099"><use href="#sig"/></svg></a>
         <button class="motion-btn" id="motion-btn" type="button" aria-pressed="true" title="애니메이션 켜기/끄기"><i></i><span>MOTION</span></button>
         <span class="issue-chip" id="issue-chip">ISSUE</span>
       </div>
@@ -377,9 +395,8 @@
           </div>
           <div class="rv zoom" style="--d:.15s">
             <div class="photo" id="photo">
-              <div class="blob b1"></div><div class="blob b2"></div>
+              <div class="arrow"></div><div class="quarter"></div>
               <div class="frame"><img id="cover-img" alt="" referrerpolicy="no-referrer"></div>
-              <div class="ring"></div>
               <a class="credit" id="cover-credit" target="_blank" rel="noopener"></a>
             </div>
             <div class="pass" id="pass"></div>
@@ -387,9 +404,11 @@
         </div>
       </div>
       <svg class="waves" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
-        <path fill="#75BD51" opacity=".9" d="M0 92 C 240 40 420 40 640 78 S 1080 120 1440 60 V120 H0Z"><animate attributeName="d" dur="12s" repeatCount="indefinite" values="M0 92 C 240 40 420 40 640 78 S 1080 120 1440 60 V120 H0Z;M0 80 C 260 60 460 30 700 70 S 1100 100 1440 74 V120 H0Z;M0 92 C 240 40 420 40 640 78 S 1080 120 1440 60 V120 H0Z"/></path>
-        <path fill="#0AA4B4" d="M0 100 C 300 70 520 70 760 96 S 1180 118 1440 84 V120 H0Z"><animate attributeName="d" dur="9s" repeatCount="indefinite" values="M0 100 C 300 70 520 70 760 96 S 1180 118 1440 84 V120 H0Z;M0 96 C 280 84 560 60 800 90 S 1200 110 1440 92 V120 H0Z;M0 100 C 300 70 520 70 760 96 S 1180 118 1440 84 V120 H0Z"/></path>
-        <path fill="#043E80" d="M0 110 C 360 92 620 100 900 110 S 1260 116 1440 104 V120 H0Z"/>
+        <defs><linearGradient id="bandG" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#6bb92d"/><stop offset=".35" stop-color="#00a19a"/>
+          <stop offset=".6" stop-color="#0084bb"/><stop offset=".85" stop-color="#004a9a"/><stop offset="1" stop-color="#1d2088"/></linearGradient></defs>
+        <polygon fill="url(#bandG)" opacity=".55" points="0,120 1180,28 1240,120"/>
+        <polygon fill="url(#bandG)" points="0,120 1440,40 1440,120"/>
+        <polygon fill="#1d2088" points="1150,120 1440,52 1440,120"/>
       </svg>
       <div class="scroll-cue">SCROLL</div>
     </section>
@@ -399,7 +418,7 @@
       <div class="wrap">
         <p class="eyebrow rv">01 · Editor's Insight <span id="season-chip" style="color:var(--on-dark-3);margin-left:10px"></span></p>
         <h2 class="title ml"><span id="insight-title"></span></h2>
-        <p class="eyebrow rv" style="color:#E6C98A">Key Strategic Takeaways</p>
+        <p class="eyebrow rv" style="color:#9ed36a">Key Strategic Takeaways</p>
         <div class="hl-grid" id="insight-highlights"></div>
         <div class="commentary rv">
           <div class="h"><svg width="16" height="16"><use href="#i-feather"/></svg>Editor's Commentary · 종합 분석 제언</div>
@@ -476,10 +495,12 @@
 
   <footer class="dark">
     <div class="wrap f">
-      <div><b>AquaInsight <span style="color:var(--teal)">Gyeonggi</span></b><p style="margin:8px 0 0;max-width:420px">경기도 해양수산자원연구소가 발행하는 수산양식 인텔리전스 매거진입니다.</p></div>
-      <div style="text-align:right"><p class="pub" style="margin:0">Publisher: Seong-min Kim, Ph.D., P.E.(Aquaculture)</p>
+      <div><b>AquaInsight <span style="color:var(--teal)">Gyeonggi</span></b>
+        <p style="margin:8px 0 0;max-width:440px">경기도 해양수산자원연구소가 발행하는 수산양식 인텔리전스 매거진입니다.</p>
+        <p class="pub" style="margin:14px 0 0">Publisher: Seong-min Kim, Ph.D., P.E.(Aquaculture)</p>
         <p style="margin:6px 0 0">© <span id="yr"></span> Gyeonggi Marine Fisheries Research Institute</p>
         <p style="margin:6px 0 0;font-size:11px;color:var(--on-dark-3)">사진: Wikimedia Commons(각 사진에 저작자·라이선스 표기) · 지도: Natural Earth</p></div>
+      <a class="sig-foot" href="https://www.gg.go.kr" target="_blank" rel="noopener" aria-label="경기도"><svg viewBox="0 0 364.694 241.099"><use href="#sig"/></svg></a>
     </div>
   </footer>
 
@@ -739,7 +760,7 @@
         uT: {value: 0}, uW: {value: 1}, uK: {value: 0}, uG: {value: 0}, uCalm: {value: 0},
         uSpin: {value: 0}, uSize: {value: (mobile ? 2.6 : 3.2) * Math.min(2, devicePixelRatio || 1)},
         uGG: {value: new T.Vector3((gg[1] - kLon) * KS, (gg[0] - kLat) * KS * 1.18, 0)},
-        cA: {value: new T.Color('#0AA4B4')}, cB: {value: new T.Color('#8494F0')}, cC: {value: new T.Color('#75BD51')}
+        cA: {value: new T.Color('#3da1cd')}, cB: {value: new T.Color('#6f7be0')}, cC: {value: new T.Color('#6bb92d')}
       };
       const mat = new T.ShaderMaterial({
         uniforms: U, transparent: true, depthWrite: false, blending: T.AdditiveBlending,
